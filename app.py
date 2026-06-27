@@ -14,7 +14,7 @@ import pandas as pd
 
 # Add backend to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "backend"))
-from scorer import rank_candidates
+from backend.scorer import rank_candidates
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
