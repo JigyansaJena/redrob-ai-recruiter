@@ -1,0 +1,61 @@
+team_name: "Jigyansa Redrob"
+
+primary_contact:
+  name: "Jigyansa Jena"
+  email: "jigyansajena56@gmail.com"
+  phone: "+91-8018610741"
+
+team_members:
+  - name: "Jigyansa Jena"
+    email: "jigyansajena56@gmail.com"
+    role: "Full Stack + ML Engineer & CS Student"
+
+github_repo: "https://github.com/Jigyansajena/redrob-ai-recruiter"   
+
+sandbox_link: "https://jigyansajena-redrob-ai-recruiter.streamlit.app"  
+
+reproduce_command: "python backend/rank.py --candidates data/sample_candidates.json --out submission.csv"
+
+compute:
+  platform: "Windows 11 / Local"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.13.7"
+  os: "Windows 11"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
+
+ai_tools_used:
+  - "Claude"
+  - "GitHub Copilot"
+
+ai_usage_summary: |
+  Used Claude for architecture discussion, code review, and debugging.
+  Used GitHub Copilot for autocomplete.
+  No candidate data was fed to any external LLM API.
+  All scoring runs fully offline using local sentence-transformers model.
+
+methodology_summary: |
+  Multi-signal weighted scoring system with 5 components:
+  (1) Career scorer (35%) - checks job titles, company types (product vs consulting),
+  and AI/ML keywords in actual work descriptions. Penalizes non-AI titles and
+  pure consulting backgrounds explicitly called out in the JD.
+  (2) Semantic scorer (30%) - uses sentence-transformers (all-MiniLM-L6-v2) to
+  compute cosine similarity between candidate profile text and JD. Catches
+  non-obvious matches beyond keyword overlap.
+  (3) Behavioral scorer (20%) - weights platform signals: last active date,
+  open-to-work flag, recruiter response rate, GitHub activity, profile completeness.
+  (4) Skills bonus (10%) - extra points for critical JD skills with proficiency
+  and duration weighting. Verified assessment scores get additional boost.
+  (5) Logistics (5%) - India location, sub-30-day notice period, hybrid work mode.
+  Honeypot detection runs before scoring to filter impossible profiles.
+  Runtime: ~2.5s for 50 candidates, estimated ~3min for 100K on CPU.
+
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
