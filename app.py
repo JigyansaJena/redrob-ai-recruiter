@@ -13,8 +13,10 @@ import streamlit as st
 import pandas as pd
 
 # Add backend to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "backend"))
-from backend.scorer import rank_candidates
+import sys, os
+sys.path.insert(0, os.path.dirname(__file__))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "Backend"))
+from scorer import rank_candidates
 
 # ── Page config ──────────────────────────────────────────────────────────────
 st.set_page_config(
